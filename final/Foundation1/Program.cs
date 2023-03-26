@@ -4,7 +4,10 @@ using System.Collections.Generic;
 class Program
 {
     static void Main(string[] args)
-    {
+    {   
+        Console.WriteLine("***********PRODUCT AWARENESS TRACKER***********");
+        Console.WriteLine("-- Here is the data collected so far from YouTube videos and their comments --");
+        Console.WriteLine("");
         List<Video> videos = new List<Video>();
 
         Video video1 = new Video {Title = "SPECIALIST testing DOVE PINK, COCONUT MILK, RESTORE and GO FRESH FRESH TOUCH SOAPS on the FACE", Author = "Pharmacy&Makeup", Length = 676};
@@ -29,9 +32,9 @@ class Program
         videos.Add(video3);
 
         Video video4 = new Video {Title = "Washing My Face With DOVE Soap For 1 Week", Author = "Chelsea Gomez", Length = 152};
-        video3.AddComment("Lemon Does It All", "It actually took me 3 months of using only Dove for my face to finally look good!");
-        video3.AddComment("Yuuki Yamamoto", "i like how she made the video unfiltered very real");
-        video3.AddComment("Chaimae Rakhim", "I don't know but I feel that Dove makes the skin oily, just use it when you feel that your skin is dry. I'm using La roche posay effaclar cleanser and it works fine");
+        video4.AddComment("Lemon Does It All", "It actually took me 3 months of using only Dove for my face to finally look good!");
+        video4.AddComment("Yuuki Yamamoto", "i like how she made the video unfiltered very real");
+        video4.AddComment("Chaimae Rakhim", "I don't know but I feel that Dove makes the skin oily, just use it when you feel that your skin is dry. I'm using La roche posay effaclar cleanser and it works fine");
         videos.Add(video4);
 
         foreach (Video video in videos)
