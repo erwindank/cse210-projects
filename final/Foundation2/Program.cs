@@ -1,155 +1,79 @@
 using System;
+using System.Collections.Generic;
 
 class Program
 {
     static void Main(string[] args)
     {
-        // Create some products
-        Product p1 = new Product("Toothbrush", "1234", 2.99, 2);
-        Product p2 = new Product("Shampoo", "5678", 5.99, 1);
+        Console.WriteLine("***** PRODUCT ORDERING SYSTEM *****");
+        Console.WriteLine("-- The following orders are in place --");
+        // Creating products
+        Product product1 = new Product("Black Toner Cartridge", 00601734, 257.00, 1);
+        Product product2 = new Product("Cyan Toner Cartridge", 00601735, 514.00, 1);
+        Product product3 = new Product("Magenta Toner Cartridge", 00601736, 514.00, 1);
+        Product product4 = new Product("Yellow Toner Cartridge", 00601737, 514.00, 1);
+        Product product5 = new Product("Waste Bottle Container", 00812990, 64.95, 1);
+        Product product6 = new Product("Fuser", 00813102, 565.00, 1);
 
-        // Create a customer
-        Address a1 = new Address("123 Main St", "Anytown", "NY", "USA");
-        Customer c1 = new Customer("John Smith", a1);
+        // Creating customers
+        Address customerAddress1 = new Address("6701 67th Ln N", "Pinellas Park", "FL", "USA");
+        Customer customer1 = new Customer("John Packer", customerAddress1);
 
-        // Create an order
-        Order o1 = new Order(c1);
-        o1.AddProduct(p1);
-        o1.AddProduct(p2);
+        Address customerAddress2 = new Address("414 North Beverly", "Shoshone", "ID", "USA");
+        Customer customer2 = new Customer("Larry Jones", customerAddress2);
 
-        // Calculate and display the total price of the order
-        Console.WriteLine("Total price of order 1: $" + o1.TotalPrice());
+        Address customerAddress3 = new Address("1440 52 St NE", "Calgary", "AB", "Canada");
+        Customer customer3 = new Customer("Martha Juarez", customerAddress3);
 
-        // Display the packing label for the order
-        Console.WriteLine("Packing label for order 1:");
-        Console.WriteLine(o1.PackingLabel());
+        Address customerAddress4 = new Address("3090 Cross Ln", "Idaho Falls", "ID", "USA");
+        Customer customer4 = new Customer("Jane Carrey", customerAddress4);
 
-        // Display the shipping label for the order
-        Console.WriteLine("Shipping label for order 1:");
-        Console.WriteLine(o1.ShippingLabel());
+        // Getting orders created
+        List<Product> order1Products = new List<Product> {product1, product2, product3, product4};
+        Order order1 = new Order(customer1, order1Products);
 
-        // Create another customer
-        Address a2 = new Address("456 Broadway", "Anytown", "ON", "Canada");
-        Customer c2 = new Customer("Jane Doe", a2);
+        List<Product> order2Products = new List<Product> {product1, product5};
+        Order order2 = new Order(customer2, order2Products);
 
-        // Create another order
-        Order o2 = new Order(c2);
-        o2.AddProduct(p2);
+        List<Product> order3Products = new List<Product> {product1, product2};
+        Order order3 = new Order(customer3, order3Products);
 
-        // Calculate and display the total price of the order
-        Console.WriteLine("Total price of order 2: $" + o2.TotalPrice());
+        List<Product> order4Products = new List<Product> {product3, product4, product6};
+        Order order4 = new Order(customer4, order4Products);
 
-        // Display the packing label for the order
-        Console.WriteLine("Packing label for order 2:");
-        Console.WriteLine(o2.PackingLabel());
+        // Display the packing, and shipping label, and total price of the orders
+        Console.WriteLine("Order 1");
+        Console.WriteLine("Packing Label:");
+        Console.WriteLine(order1.GetPackingLabel());
+        Console.WriteLine("Shipping Label:");
+        Console.WriteLine(order1.GetShippingLabel());
+        Console.WriteLine("Total Price: $" + order1.GetTotalPrice());
 
-        // Display the shipping label for the order
-        Console.WriteLine("Shipping label for order 2:");
-        Console.WriteLine(o2.ShippingLabel());
+        Console.WriteLine();
+
+        Console.WriteLine("Order 2");
+        Console.WriteLine("Packing Label:");
+        Console.WriteLine(order2.GetPackingLabel());
+        Console.WriteLine("Shipping Label:");
+        Console.WriteLine(order2.GetShippingLabel());
+        Console.WriteLine("Total Price: $" + order2.GetTotalPrice());
+
+        Console.WriteLine();
+
+        Console.WriteLine("Order 3");
+        Console.WriteLine("Packing Label:");
+        Console.WriteLine(order3.GetPackingLabel());
+        Console.WriteLine("Shipping Label:");
+        Console.WriteLine(order3.GetShippingLabel());
+        Console.WriteLine("Total Price: $" + order3.GetTotalPrice());
+
+        Console.WriteLine();
+
+        Console.WriteLine("Order 4");
+        Console.WriteLine("Packing Label:");
+        Console.WriteLine(order4.GetPackingLabel());
+        Console.WriteLine("Shipping Label:");
+        Console.WriteLine(order4.GetShippingLabel());
+        Console.WriteLine("Total Price: $" + order4.GetTotalPrice());
     }
 }
-
-class Product
-{
-    private string name;
-    private string id;
-    private double price;
-    private int quantity;
-
-    public Product(string name, string id, double price, int quantity)
-    {
-        this.name = name;
-        this.id = id;
-        this.price = price;
-        this.quantity = quantity;
-    }
-
-    public double Price()
-    {
-        return price * quantity;
-    }
-
-    public string Name()
-    {
-        return name;
-    }
-
-    public string Id()
-    {
-        return id;
-    }
-}
-
-class Customer
-{
-    private string name;
-    private Address address;
-
-    public Customer(string name, Address address)
-    {
-        this.name = name;
-        this.address = address;
-    }
-
-    public bool IsInUSA()
-    {
-        return address.IsInUSA();
-    }
-
-    public string Name()
-    {
-        return name;
-    }
-
-    public Address Address()
-    {
-        return address;
-    }
-}
-
-class Address
-{
-    private string street;
-    private string city;
-    private string state;
-    private string country;
-
-    public Address(string street, string city, string state, string country)
-    {
-        this.street = street;
-        this.city = city;
-        this.state = state;
-        this.country = country;
-    }
-
-    public bool IsInUSA()
-    {
-        return country.Equals("USA");
-    }
-
-    public string Street()
-    {
-        return street;
-    }
-
-    public string City()
-    {
-        return city;
-    }
-
-    public string State()
-    {
-        return state;
-    }
-
-    public string Country()
-    {
-        return country;
-    }
-
-    public string ToString()
-    {
-        return street + "\n" + city + ", " + state + " " + country;
-    }
-}
-
