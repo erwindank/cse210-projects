@@ -42,38 +42,62 @@ class Program
         Order order4 = new Order(customer4, order4Products);
 
         // Display the packing, and shipping label, and total price of the orders
-        Console.WriteLine("Order 1");
+        Console.WriteLine("=== ORDER 1 ===");
         Console.WriteLine("Packing Label:");
+        Console.WriteLine("***********************************");
         Console.WriteLine(order1.GetPackingLabel());
+        Console.WriteLine("***********************************\n");
         Console.WriteLine("Shipping Label:");
+        Console.WriteLine("==============================");
+        Console.WriteLine("------------------------------");
         Console.WriteLine(order1.GetShippingLabel());
         Console.WriteLine("Total Price: $" + order1.GetTotalPrice());
+        Console.WriteLine("------------------------------");
+        Console.WriteLine("==============================\n");
 
         Console.WriteLine();
 
-        Console.WriteLine("Order 2");
+        Console.WriteLine("=== ORDER 2 ===");
         Console.WriteLine("Packing Label:");
+        Console.WriteLine("***********************************");
         Console.WriteLine(order2.GetPackingLabel());
+        Console.WriteLine("***********************************\n");
         Console.WriteLine("Shipping Label:");
+        Console.WriteLine("==============================");
+        Console.WriteLine("------------------------------");
         Console.WriteLine(order2.GetShippingLabel());
         Console.WriteLine("Total Price: $" + order2.GetTotalPrice());
+        Console.WriteLine("------------------------------");
+        Console.WriteLine("==============================\n");
 
         Console.WriteLine();
 
-        Console.WriteLine("Order 3");
+        Console.WriteLine("=== ORDER 3 ===");
         Console.WriteLine("Packing Label:");
+        Console.WriteLine("***********************************");
         Console.WriteLine(order3.GetPackingLabel());
+        Console.WriteLine("***********************************\n");
         Console.WriteLine("Shipping Label:");
+        Console.WriteLine("==============================");
+        Console.WriteLine("------------------------------");
         Console.WriteLine(order3.GetShippingLabel());
         Console.WriteLine("Total Price: $" + order3.GetTotalPrice());
+        Console.WriteLine("------------------------------");
+        Console.WriteLine("==============================\n");
 
         Console.WriteLine();
 
-        Console.WriteLine("Order 4");
+        Console.WriteLine("=== ORDER 4 ===   ");
         Console.WriteLine("Packing Label:");
+        Console.WriteLine("***********************************");
         Console.WriteLine(order4.GetPackingLabel());
+        Console.WriteLine("***********************************\n");
         Console.WriteLine("Shipping Label:");
+        Console.WriteLine("==============================");
+        Console.WriteLine("------------------------------");
         Console.WriteLine(order4.GetShippingLabel());
         Console.WriteLine("Total Price: $" + order4.GetTotalPrice());
+        Console.WriteLine("------------------------------");
+        Console.WriteLine("==============================\n");
     }
 }
