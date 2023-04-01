@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions;
+
 class Event {
     private string _title;
     private string _description;
@@ -23,5 +25,14 @@ class Event {
 
     public virtual string GetShortDescription() {
         return String.Format("{0} - {1} - {2}", GetType().Name, _title, _date.ToShortDateString());
+    }
+    
+}
+
+public static class StringExtensions
+{
+    public static string[] SplitOnCapitalLetters(this string str)
+    {
+        return Regex.Split(str, @"(?<!^)(?=[A-Z])");
     }
 }
