@@ -1,33 +1,50 @@
-public class Goal
+using System;
+using System.Collections.Generic;
+
+public abstract class Goal
 {
-    public string _name { get; set; }
-    public string _goalDescription { get; set; }
-    public int _points { get; set; }
-    public int _completionCount { get; set; }
-    public bool _completionMark { get; set; }
-    public int _requiredCompletionCount { get; set; }
-    public bool _isCompleted => _completionCount >= _requiredCompletionCount;
+    private string _title;
+    private int _pointValue;
+    private int _timesCompleted;
+    private bool _isComplete;
 
-    public Goal(string name, string description, int points, bool completionMark = false, int requiredCompletionCount = 1)
+    public Goal(string title, int pointValue)
     {
-        _name = name;
-        _goalDescription = description;
-        _points = points;
-        _completionMark = completionMark;
-        _requiredCompletionCount = requiredCompletionCount;
+        _title = title;
+        _pointValue = pointValue;
+        _timesCompleted = 0;
+        _isComplete = false;
     }
 
-    public void IsComplete()
+    public string Title
     {
-        if (!_isCompleted)
-        {
-            _completionCount++;
-        }
+        get { return _title; }
     }
 
-    public string RecordEvent()
+    public int PointValue
     {
-        string eventRecord = $"[  ] Simple Goal: {_name} ({_goalDescription}) | {_points}";
-        return eventRecord;
+        get { return _pointValue; }
+    }
+
+    public int TimesCompleted
+    {
+        get { return _timesCompleted; }
+        set { _timesCompleted = value; }
+    }
+
+    public bool IsComplete
+    {
+        get { return _isComplete; }
+        set { _isComplete = value; }
+    }
+
+    public abstract void Display();
+
+    public abstract void CheckOff();
+
+    public override string ToString()
+    {
+        string status = _isComplete ? "Complete" : "Incomplete";
+        return $"{_title} ({_pointValue} points, {status})";
     }
 }

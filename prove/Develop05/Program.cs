@@ -1,112 +1,74 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 
-class Program
+namespace GoalTrackingApp
 {
-    static void Main(string[] args)
+    class Program
     {
-        List<Goal> _goals = new List<Goal>(); // initialize _goals with an empty list
-        int _score = 0;
-        string _menuSelection = "";
-
-        while(_menuSelection != "5") // initialize _menuSelection as an empty string
+        static void Main(string[] args)
         {
-            string _goalName = "";
-            string _goalDescription = "";
-            int _goalPoints = 0;
-            int _goalTimes = 0;
-            int _goalBonus = 0;
+            Console.WriteLine("Welcome to the Goal Tracking App!");
 
-            Console.WriteLine($"You have {_score} points. \n");
-            Console.WriteLine("Menu Options:");
-            Console.WriteLine("     1. Create New Goal");
-            Console.WriteLine("     2. List Goals");
-            Console.WriteLine("     3. Save Goals");
-            Console.WriteLine("     4. Load Goals");
-            Console.WriteLine("     5. Record Event");
-            Console.WriteLine("     6. Quit");
+            // Get the user's name
+            Console.Write("Please enter your username: ");
+            string userName = Console.ReadLine();
 
-            Console.Write("\nSelect a choice from the menu: ");
-            _menuSelection = Console.ReadLine();
+            // Set up the file path for the user's goals
+            string filePath = $"{userName}.txt";
 
-            switch (_menuSelection)
+            // Create an empty list to hold the user's goals
+            List<Goal> goals = new List<Goal>();
+
+            // Check if the file exists for this user, and if so, load their goals from it
+            if (File.Exists(filePath))
             {
-                case "1":
-                    Console.WriteLine("The types of Goals are:");
-                    Console.WriteLine("1. Simple Goal");
-                    Console.WriteLine("2. Eternal Goal");
-                    Console.WriteLine("3. Checklist Goal");
-                    Console.Write("What type of goal would you like to create:");
-                    string _goalTypeChoice = Console.ReadLine();
-                    switch (_goalTypeChoice)
-                    {
-                        case "1":
-                            Console.Write("What is the name of your goal?: ");
-                            _goalName = Console.ReadLine();
-                            Console.Write("What is a short description of your goal?: ");
-                            _goalDescription = Console.ReadLine();
-                            Console.Write("What is the amount of points associated with this goal?");
-                            _goalPoints = int.Parse(Console.ReadLine());
-                            Goal simpleGoal = new Goal(_goalName, _goalDescription, _goalPoints);
-                            _goals.Add(simpleGoal);
-                            Console.WriteLine(_goals);
-                            break;
+                goals = LoadGoals(filePath);
+            }
+            else
+            {
+                Console.WriteLine($"No goals found for user {userName}. Creating new file at {filePath}.");
+            }
 
-                        case "2":
-                            Console.WriteLine("What is the name of your goal?: ");
-                            _goalName = Console.ReadLine();
-                            Console.WriteLine("What is a short description of your goal?: ");
-                            _goalDescription = Console.ReadLine();
-                            Console.WriteLine("What is the amount of points associated with this goal?");
-                            _goalPoints = int.Parse(Console.ReadLine());
-                            EternalGoal eternalGoal = new EternalGoal(_goalName, _goalDescription, _goalPoints);
-                            _goals.Add(eternalGoal);
-                            break;
+            // Initialize the user's level
+            int userLevel = 1;
 
-                        case "3":
-                            Console.WriteLine("What is the name of your goal?: ");
-                            _goalName = Console.ReadLine();
-                            Console.WriteLine("What is a short description of your goal?: ");
-                            _goalDescription = Console.ReadLine();
-                            Console.WriteLine("What is the amount of points associated with this goal?");
-                            _goalPoints = int.Parse(Console.ReadLine());;
-                            Console.WriteLine("How many times does this goal need to be accomplished for a bonus?");
-                            _goalTimes = int.Parse(Console.ReadLine());;
-                            Console.WriteLine("What is the bonus for accomplishing it that many times?: ");
-                            _goalBonus = int.Parse(Console.ReadLine());;
-                            ChecklistGoal checklistGoal = new ChecklistGoal(_goalName, _goalDescription, _goalPoints, _goalTimes, _goalBonus);
-                            _goals.Add(checklistGoal);
-                            break;
+            // Display the menu options to the user
+            while (true)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Please choose an option:");
+                Console.WriteLine("1. Create a new goal");
+                Console.WriteLine("2. View all goals");
+                Console.WriteLine("3. Delete a goal");
+                Console.WriteLine("4. Save and quit");
 
-                        default:
-                            Console.WriteLine("Invalid choice. Try again.");
-                            break;
-                    }
-                    break;
-                case "2":
+                // Get the user's choice
+                Console.Write("> ");
+                string choice = Console.ReadLine();
 
-                    break;
-
-                case "3":
-
-                    break;
-
-                case "4":
-
-                    break;
-
-                case "5":
-
-                    return;
-
-                case "6":
-
-                    Console.WriteLine("Goodbye!");
-                    return;
-
-                default:
-                    Console.WriteLine("Invalid choice. Try again.");
-                    break;
+                // Respond to the user's choice
+                switch (choice)
+                {
+                    case "1":
+                        Goal newGoal = new Goal();
+                        goals.Add(newGoal);
+                        Console.WriteLine($"Goal '{newGoal.Title}' created successfully.");
+                        break;
+                    case "2":
+                        ViewAllGoals(goals);
+                        break;
+                    case "3":
+                        DeleteGoal(goals);
+                        break;
+                    case "4":
+                        SaveGoals(filePath, goals);
+                        Console.WriteLine($"Goals saved to file at {filePath}. Goodbye!");
+                        return;
+                    default:
+                        Console.WriteLine("Invalid choice. Please try again.");
+                        break;
+                }
             }
         }
     }

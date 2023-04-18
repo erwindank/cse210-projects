@@ -1,16 +1,22 @@
-class EternalGoal : Goal
+public class EternalGoal : Goal
 {
-    private int _timesCompleted;
-
-    public EternalGoal(string name, string description, int points) : base(name, description, points)
+    public EternalGoal(string title, int pointValue) : base(title, pointValue)
     {
-        // constructor logic for the EternalGoal subclass
-        // this could include setting any additional properties specific to this type of goal
     }
 
-    public override void IsComplete()
+    public override void Display()
     {
-        _timesCompleted++;
-        Console.WriteLine($"Goal '{_name}' has been completed {_timesCompleted} times.");
+        Console.WriteLine(ToString());
+    }
+
+    public override void CheckOff()
+    {
+        Console.WriteLine($"{Title} cannot be checked off.");
+    }
+
+    public override string ToString()
+    {
+        string status = IsComplete ? "Complete" : "Incomplete";
+        return $"{Title} ({PointValue} points, {status}, Eternal)";
     }
 }
