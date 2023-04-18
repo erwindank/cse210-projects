@@ -5,10 +5,12 @@
         public string _jobTitle = "";
         public int _startYear = 0;
         public int _endYear = 0;
+    private object _familyName;
+    private object _givenName;
 
-        // A special method, called a constructor that is invoked using the  
-        // new keyword followed by the class name and parentheses.
-        public Job()
+    // A special method, called a constructor that is invoked using the  
+    // new keyword followed by the class name and parentheses.
+    public Job()
         {
         }
 

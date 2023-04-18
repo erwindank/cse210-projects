@@ -6,7 +6,7 @@ namespace GoalTrackingApp
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main(string[] args, Goal newGoal)
         {
             Console.WriteLine("Welcome to the Goal Tracking App!");
 
@@ -30,9 +30,6 @@ namespace GoalTrackingApp
                 Console.WriteLine($"No goals found for user {userName}. Creating new file at {filePath}.");
             }
 
-            // Initialize the user's level
-            int userLevel = 1;
-
             // Display the menu options to the user
             while (true)
             {
@@ -51,7 +48,6 @@ namespace GoalTrackingApp
                 switch (choice)
                 {
                     case "1":
-                        Goal newGoal = new Goal();
                         goals.Add(newGoal);
                         Console.WriteLine($"Goal '{newGoal.Title}' created successfully.");
                         break;
@@ -70,6 +66,26 @@ namespace GoalTrackingApp
                         break;
                 }
             }
+        }
+
+        private static void SaveGoals(string filePath, List<Goal> goals)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void DeleteGoal(List<Goal> goals)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void ViewAllGoals(List<Goal> goals)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static List<Goal> LoadGoals(string filePath)
+        {
+            throw new NotImplementedException();
         }
     }
 }
